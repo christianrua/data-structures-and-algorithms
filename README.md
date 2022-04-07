@@ -1,2 +1,2 @@
-# aws_cdk_airflow
-this is a practice realted with airflow in aws
+# Data Structures and Algorithms 
+this is a Udemy course, related wiht data structures and algorithms, and how you can takle a success technical interview.
