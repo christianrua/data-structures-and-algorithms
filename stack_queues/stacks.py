@@ -27,22 +27,25 @@ class Stack():
         """
             Adds a Node at the top of the stack
         """
+        node = Node(value)
         if self.top != None:
-            node = Node(value)
             self.bottom = self.top
             self.top = node
             node.next = self.bottom
             self.length += 1
         else:
-            node = Node(value)
             self.top = node
             node.next = self.bottom
             self.length += 1
+           
 
     def pop(self):
         """
             Remove from the top of the stack
-        """     
+        """   
+        if not self.bottom == None:
+            return None  
+            
         head = self.top
         self.top = self.bottom 
         self.length =- 1
