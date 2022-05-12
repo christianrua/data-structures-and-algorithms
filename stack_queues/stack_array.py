@@ -1,7 +1,5 @@
-
-
-from sqlalchemy import null
 from stack_interface import IStack
+from sqlalchemy import null
 
 class Node():
 
@@ -12,15 +10,14 @@ class Node():
 class Stack(IStack):
 
     def __init__(self):
-        self.top = None
-        self.bottom = None
-        self.length = 0 
+        self._array = []
+         
 
     def peek(self):
         """
             Shows the top node
         """
-        return self.top
+        return self._array[0]
         
 
     def push(self, value):
@@ -28,28 +25,20 @@ class Stack(IStack):
             Adds a Node at the top of the stack
         """
         node = Node(value)
-        if self.top != None:
-            self.bottom = self.top
-            self.top = node
-            node.next = self.bottom
-            self.length += 1
+        
+        #if self.top != None:
+        if self._array != []:    
+            node.next = self._array[0]
+            self._array.insert(0, node)
+            
         else:
-            self.top = node
-            node.next = self.bottom
-            self.length += 1
-           
+            self._array.append(node)
 
     def pop(self):
         """
             Remove from the top of the stack
         """   
-        if self.bottom == None:
-            return None  
-            
-        head = self.top
-        self.top = self.bottom 
-        self.length =- 1
-        return head
+        return self._array.pop(0)
 
     def __repr__(self) -> str:
         return str(self)    
@@ -59,9 +48,7 @@ my_stack = Stack()
 my_stack.push("Google")
 my_stack.push("Udemy")
 my_stack.push("Discord")
-print(my_stack.peek().value)
+print(f"this is the head {my_stack.peek().value}")
 some_node = my_stack.pop()
 print("detach element",some_node.value)
 print("actual head",my_stack.peek().value)
-
-
