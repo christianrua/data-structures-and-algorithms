@@ -1,13 +1,6 @@
-
-
-from sqlalchemy import null
 from stack_interface import IStack
 
-class Node():
-
-    def __init__(self, value):
-        self.value = value
-        self.next = null
+from node import Node
 
 class Stack(IStack):
 
