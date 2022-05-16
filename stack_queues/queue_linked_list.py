@@ -21,19 +21,22 @@ class Queue(IQueue):
         """
             Adds a Node at the tail of the queue
         """
+        node = Node(value)
         if(self.first == None):
-            self.first = Node(value)
+            self.first = node
+            self.last = node
             self.length += 1
             
-        elif(self.last == None):
-            self.last = Node(value)
-            self.first.next = self.last
-            self.length += 1
+        # elif(self.last == None):
+        #     self.last = node
+        #     self.first.next = self.last
+        #     self.length += 1
            
         else: 
-            new_node = Node(value)
+            new_node = node
             self.last.next = new_node
             self.last = new_node
+            self.length += 1
 
         self._print_status()  
 
