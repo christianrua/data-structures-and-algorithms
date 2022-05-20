@@ -27,11 +27,6 @@ class Queue(IQueue):
             self.last = node
             self.length += 1
             
-        # elif(self.last == None):
-        #     self.last = node
-        #     self.first.next = self.last
-        #     self.length += 1
-           
         else: 
             new_node = node
             self.last.next = new_node
