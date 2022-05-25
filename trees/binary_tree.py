@@ -48,13 +48,40 @@ class BinarySeachTree():
 
     def print_tree(self):
         for node in self.tree_nodes:
-            print(f"node value: {node.value}, node left value {self._check_none_value(node.left)}, node right {self._check_none_value(node.right)}")  
+            print(f"node value: {node.value}, node left value {self._check_none_value(node.left)}, node right {self._check_none_value(node.right)}") 
+
+    def traverse(self, node,tree={},level=0, type="root"):
+        tree[f"node {level} {type} value"] = node.value
+        
+        if node.left != None:
+            self.traverse(node.left, tree, level + 1, "left")    
+        else:
+            tree[f"node {level + 1} left value"] = None
+            return tree
+
+        if node.right != None:
+            self.traverse(node.right,tree, level + 1, "right")
+        else:
+            tree[f"node {level + 1} right value"] = None
+            return tree    
+
+        return tree     
+
+    def print_tree_2(self):
+        tree = self.traverse(self.root)    
+        
+
+
       
 
 binary_tree = BinarySeachTree()
-binary_tree.insert(5)
-binary_tree.insert(10)
-binary_tree.insert(2)
-binary_tree.insert(11)
+binary_tree.insert(9)
+binary_tree.insert(4)
+binary_tree.insert(6)
+binary_tree.insert(20)
+binary_tree.insert(170)
 binary_tree.insert(15)
+binary_tree.insert(1)
 binary_tree.print_tree()
+print(binary_tree.traverse(binary_tree.root))
+
