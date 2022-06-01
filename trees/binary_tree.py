@@ -66,8 +66,27 @@ class BinarySeachTree():
                     else:
                         current_node = current_node.left 
 
-    def lookup(self, value):
-        pass
+    def lookup_v2(self, value, current_node):
+        
+        response = ''
+        while current_node:
+            if value == current_node.dict["value"]:
+                response = current_node
+                break
+            elif value > current_node.dict["value"]:
+                if current_node.dict["right"] != None:
+                    self.lookup_v2(value, current_node.dict["right"])
+                else:
+                    response = f"the value {value} is not present in this tree"  
+                    break
+            elif value < current_node.dict["value"]:
+                if current_node.dict["left"] != None:
+                    self.lookup_v2(value, current_node.dict["left"])
+                else:
+                    response =  f"the value {value} is not present in this tree" 
+                    break 
+
+        return response            
 
     def remove(self, value):
         pass
@@ -142,5 +161,8 @@ binary_tree.insert_v2(20)
 binary_tree.insert_v2(170)
 binary_tree.insert_v2(15)
 binary_tree.insert_v2(1)
+
 binary_tree.print_tree_v2()
+binary_tree.lookup_v2(10, binary_tree.root)
+binary_tree.lookup_v2(20, binary_tree.root)
 
