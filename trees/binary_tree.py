@@ -1,4 +1,5 @@
 
+from email.errors import InvalidMultipartContentTransferEncodingDefect
 from node_class import Node
 
 class BinarySeachTree():
@@ -67,27 +68,55 @@ class BinarySeachTree():
                         current_node = current_node.left 
 
     def lookup_v2(self, value, current_node):
+        """
+        {
+            'value': 9, 
+                'left': {'value': 4, 
+                            'left': {
+                                    'value': 1, 
+                                    'left': None, 
+                                    'right': None}, 
+                            'right': {'value': 6, 
+                                    'left': None, 
+                                    'right': None}
+                                    }, 
+                'right': {'value': 20, 
+                            'left': {
+                                'value': 15, 
+                                'left': None, 
+                                'right': None}, 
+                            'right': {'value': 170, 
+                                        'left': None, 
+                                        'right': None}
+                                        }
+                                }
         
-        response = ''
-        while current_node:
-            if value == current_node.dict["value"]:
-                response = current_node
-                break
-            elif value > current_node.dict["value"]:
-                if current_node.dict["right"] != None:
-                    self.lookup_v2(value, current_node.dict["right"])
-                else:
-                    response = f"the value {value} is not present in this tree"  
-                    break
-            elif value < current_node.dict["value"]:
-                if current_node.dict["left"] != None:
-                    self.lookup_v2(value, current_node.dict["left"])
-                else:
-                    response =  f"the value {value} is not present in this tree" 
-                    break 
+        """
+        # print(type(current_node))
+        # if isinstance(current_node, Node):
+        #     print("current node value", current_node.dict["value"])
+        #     print("current node left type",type(current_node.dict["left"]))
+        #     print("current node right type",type(current_node.dict["right"]))
 
-        return response            
-
+        if value == current_node.dict["value"]:
+            print("it finds the value: ", current_node.dict["value"])
+            return
+            
+        elif value > current_node.dict["value"]:
+            if isinstance(current_node.dict["right"], Node):
+                self.lookup_v2(value, current_node.dict["right"])
+            else:
+                print(f"the value {value} is not present in this tree")
+                return   
+                
+        elif value < current_node.dict["value"]:
+            if isinstance(current_node.dict["left"], Node):
+                self.lookup_v2(value, current_node.dict["left"])
+            else:
+                print(f"the value {value} is not present in this tree")
+                return 
+                 
+            
     def remove(self, value):
         pass
 
@@ -163,6 +192,8 @@ binary_tree.insert_v2(15)
 binary_tree.insert_v2(1)
 
 binary_tree.print_tree_v2()
+print("for 10")
 binary_tree.lookup_v2(10, binary_tree.root)
+print("for 20")
 binary_tree.lookup_v2(20, binary_tree.root)
 
