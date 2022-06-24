@@ -98,27 +98,31 @@ class BinarySeachTree():
         #     print("current node left type",type(current_node.dict["left"]))
         #     print("current node right type",type(current_node.dict["right"]))
 
+        if self.root == None:
+            print("there is no root node")
+            return False
+
         if value == current_node.dict["value"]:
-            print("it finds the value: ", current_node.dict["value"])
-            return
+            print("it finds the value: ", current_node)
+            return True
             
         elif value > current_node.dict["value"]:
             if isinstance(current_node.dict["right"], Node):
                 self.lookup_v2(value, current_node.dict["right"])
             else:
                 print(f"the value {value} is not present in this tree")
-                return   
+                return False   
                 
         elif value < current_node.dict["value"]:
             if isinstance(current_node.dict["left"], Node):
                 self.lookup_v2(value, current_node.dict["left"])
             else:
                 print(f"the value {value} is not present in this tree")
-                return 
+                return False
                  
             
     def remove(self, value):
-        pass
+        
 
     def print_tree(self):
         for node in self.tree_nodes:
@@ -192,8 +196,6 @@ binary_tree.insert_v2(15)
 binary_tree.insert_v2(1)
 
 binary_tree.print_tree_v2()
-print("for 10")
 binary_tree.lookup_v2(10, binary_tree.root)
-print("for 20")
-binary_tree.lookup_v2(20, binary_tree.root)
+binary_tree.lookup_v2(170, binary_tree.root)
 
