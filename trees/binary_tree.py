@@ -1,6 +1,7 @@
 
 from email.errors import InvalidMultipartContentTransferEncodingDefect
 from node_class import Node
+import json
 
 class BinarySeachTree():
     
@@ -170,7 +171,9 @@ class BinarySeachTree():
                 }
         }
         """
-        print(self.root)    
+        print(json.loads(self.root.__repr__().replace("'",'"').replace("None",'')))
+        print(json.dumps(self.root.__repr__().replace("'",'"'), indent=4))    
+
         
 
 
